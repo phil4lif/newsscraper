@@ -6,10 +6,26 @@
 
 	<div class="row">
 		<div class="col s5">
+
 			<ul>
-				{{articles }}
+				{{#each articles}}
+				{{!-- <p>{{ this.title }} {{ this.link }} </p> --}}
+				{{> articles }}
+				{{/each}}
 			</ul>
 		</div>
 	</div>
 </div>
+ <div id="modalEditClient" class="modal">
+    <div class="modal-content">
+        <h4>Modal Header</h4>
+        <p>A bunch of text</p>
+		<p id="mod"></p>
+        <input type="text" name="nom">
+    </div>
+    <div class="modal-footer">
+        <a href="#!" class="modal-action modal-close waves-effect waves-green btn-flat">Agree</a>
+    </div>
+</div>
+
 <footer></footer>

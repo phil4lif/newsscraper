@@ -1,6 +1,10 @@
 <li class="flow-text articlelist">
-    {{article.title}}
+    {{title}}
+    <a href={{link}}>View Article</a>
     <br>
     <br>
-    <a class="waves-effect waves-light btn-large">Comment</a>
+    <a  id="test" data-target="modalEditClient" href="#modalEditClient" class="modal-trigger waves-effect waves-light" data-id={{id}}
+   data-nom="MON"
+        ><i class="material-icons">mode_edit</i></a>
+    {{!-- <a class="waves-effect waves-light btn-large modal-trigger" data-nom="MON" href="#modalEditClient" data-id={{id}}>Comment</a> --}}
 </li>
