@@ -1,9 +1,24 @@
+body {
+    background-image: url("./images/guillaume-de-germain-6Xw9wMJyHus-unsplash.jpg");
+    background-repeat: initial;
+}
+
 .articlelist {
     color: black;
 }
 
-    .articleimage {
+.articleimage {
         width: 90%;
         height: 90%;
-        
     }
+
+#articleholder {
+    max-height: 720px;
+    overflow: auto;
+    border:solid 2px black;
+    background-color: rgba(103, 222, 11, 0.4)
+    }
+
+#scrape {
+    background-color: rgba(103, 222, 11, 0.5);
+}

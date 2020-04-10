@@ -1,11 +1,10 @@
 var db = require("../models");
 var axios = require("axios");
 var cheerio = require("cheerio");
-function apiRoutes(app) {
 
+function apiRoutes(app) {
     app.get("/", function (req, res) {
         db.Article.find({}).then(function (dbArticle) {
-            // console.log(dbArticle[0])
             var articlesArr = []
             for (var i = 0; i < 10; i++) {
                 articlesArr.push({
@@ -18,14 +17,10 @@ function apiRoutes(app) {
             var hbsObject = {
                 articles: articlesArr
             };
-
-            // var hbsObject = { articles: [{title: "hello", link: "world"}]}
-            // console.log(dbArticle);
-            // console.log(hbsObject)
             res.render("index", hbsObject)
-        })
-
-    });
+        }
+        )
+});
 
     app.get("/scrape", function (req, res) {
         axios.get("https://www.npr.org/sections/news/")
@@ -45,9 +40,6 @@ function apiRoutes(app) {
                         .parent().parent().parent().find("img")
                         .attr("src");
 
-                    console.log(result.title)
-                    // console.log(result.altimagetext)
-                    console.log(result.imagesource)
                     db.Article.create(result)
                         .then(function (dbArticle) {
                             // console.log(dbArticle);
@@ -55,7 +47,7 @@ function apiRoutes(app) {
                         .catch(function (err) {
                             // console.log(err);
                         });
-                });
+                })
             })
     })
 

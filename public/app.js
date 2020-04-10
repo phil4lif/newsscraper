@@ -1,5 +1,5 @@
 // var axios = require("axios");
-
+$(document).ready(function(){
 $('.modal').modal();
 
 $(".modal-trigger").on("click", function () {
@@ -9,7 +9,13 @@ $(".modal-trigger").on("click", function () {
 })
 
 $("#scrape").on("click", function () {
-    console.log("scraping for new articles")
+    // console.log("scraping for new articles")
+    $.ajax({
+        method: "GET",
+        url: "/scrape"
+    }).then(function(data){
+        console.log("scraped /n/n" + data)
+    })
 })
 
 $(".add-note").on("click", function () {
@@ -31,3 +37,5 @@ $(".add-note").on("click", function () {
         console.log(data);
     })
 })
+
+});
