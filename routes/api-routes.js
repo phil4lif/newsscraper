@@ -3,17 +3,17 @@ var axios = require("axios");
 var cheerio = require("cheerio");
 function apiRoutes(app) {
 
-    app.get("/", function(req, res) {
-        db.Article.find({}).then(function(dbArticle){
+    app.get("/", function (req, res) {
+        db.Article.find({}).then(function (dbArticle) {
             // console.log(dbArticle[0])
-           var articlesArr = []
-            for (var i = 0; i < 10; i++){
-                   articlesArr.push({
-                       title: dbArticle[i].title,
-                       link: dbArticle[i].link,
-                       id: dbArticle[i]._id,
-                       imagesource: dbArticle[i].imagesource
-                   })
+            var articlesArr = []
+            for (var i = 0; i < 10; i++) {
+                articlesArr.push({
+                    title: dbArticle[i].title,
+                    link: dbArticle[i].link,
+                    id: dbArticle[i]._id,
+                    imagesource: dbArticle[i].imagesource
+                })
             }
             var hbsObject = {
                 articles: articlesArr
@@ -59,41 +59,42 @@ function apiRoutes(app) {
             })
     })
 
-    // app.get("/articles", function(req, res) {
-    //     // Grab every document in the Articles collection
-    //     db.Article.find({})
-    //       .then(function(dbArticle) {
-    //         // If we were able to successfully find Articles, send them back to the client
-    //         res.json(dbArticle);
-    //       })
-    //       .catch(function(err) {
-    //         // If an error occurred, send it to the client
-    //         res.json(err);
-    //       });
-    //   });
+    app.get("/articles", function (req, res) {
+        // Grab every document in the Articles collection
+        db.Article.find({})
+            .populate("comment")
+            .then(function (dbArticle) {
+                // If we were able to successfully find Articles, send them back to the client
+                res.json(dbArticle);
+            })
+            .catch(function (err) {
+                // If an error occurred, send it to the client
+                res.json(err);
+            });
+    });
 
-    // app.get("/articles/:id", function(req, res) {
-    //     db.Article.findOne({ _id: req.params.id})
-    //     .populate("note")
-    //     .then(function(dbArticle){
-    //         res.json(dbArticle);
-    //     })
-    //     .catch(function(err){
-    //         res.json(err)
-    //     })
-    // })
+    app.get("/articles/:id", function (req, res) {
+        db.Article.findOne({ _id: req.params.id })
+            .populate("Comment")
+            .then(function (dbArticle) {
+                res.json(dbArticle);
+            })
+            .catch(function (err) {
+                res.json(err)
+            })
+    })
 
-    // app.post("/articles/:id", function(req, res) {
-    //     db.Note.create(req.body)
-    //     .then(function(dbNote){
-    //       return db.Article.findOneAndUpdate({ _id: req.params.id }, { $push: {note:dbNote._id }}, { new:true });
-    //     }).then(function(dbArticle) {
-    //       res.json(dbArticle);
-    //     })
-    //     .catch(function(err){
-    //       res.json(err);
-    //     })
-    //   });
+    app.post("/articles/:id", function (req, res) {
+        db.Comment.create(req.body)
+            .then(function (dbComment) {
+                return db.Article.findOneAndUpdate({ _id: req.params.id }, { $push: { comment: dbComment._id } }, { new: true });
+            }).then(function (dbArticle) {
+                res.json(dbArticle);
+            })
+            .catch(function (err) {
+                res.json(err);
+            })
+    });
 
 }
 module.exports = apiRoutes
