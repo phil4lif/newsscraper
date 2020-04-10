@@ -1,10 +1,19 @@
 body {
     background-image: url("./images/guillaume-de-germain-6Xw9wMJyHus-unsplash.jpg");
-    background-repeat: initial;
+    /* background-repeat: initial; */
+}
+
+#masthead {
+    color: whitesmoke;
+    font-size: 64px;
+    font-weight: 550;
+    height: 100px;
+    background-color: rgba(103, 222, 11, 0.4);
+    border-bottom: solid 1px black;
 }
 
 .articlelist {
-    color: black;
+    color: whitesmoke;
 }
 
 .articleimage {
@@ -15,10 +24,17 @@ body {
 #articleholder {
     max-height: 720px;
     overflow: auto;
-    border:solid 2px black;
+    border:solid 1px black;
     background-color: rgba(103, 222, 11, 0.4)
     }
 
 #scrape {
     background-color: rgba(103, 222, 11, 0.5);
+    border: solid 1px black;
+}
+
+#viewarticle, #test {
+    background-color: rgba(103, 222, 11, 0.6);
+    border: solid 1px black;
+
 }

@@ -1,12 +1,10 @@
 <li class="flow-text articlelist">
-    
     {{title}}
-    <a target="_blank" href={{link}}>View Article</a>
     <br>
-    <img src={{imagesource}} alt="{{title}}"" class="articleimage">
+    <img src={{imagesource}} alt="{{title}}" class="articleimage">
     <br>
-    <a  id="test" data-target="modalEditClient" href="#modalEditClient" class="modal-trigger waves-effect waves-light" data-id={{id}}
-   data-nom="MON"
-        ><i class="material-icons">mode_edit</i></a>
+    <a id="viewarticle" target="_blank" class="btn-large waves-effect waves-light"href={{link}}>View Article</a>
+    <a  id="test" data-target="modalEditClient" href="#modalEditClient" class="modal-trigger waves-effect waves-light btn-large" data-id={{id}}
+   data-nom="MON">Comment</a>
     {{!-- <a class="waves-effect waves-light btn-large modal-trigger" data-nom="MON" href="#modalEditClient" data-id={{id}}>Comment</a> --}}
 </li>
