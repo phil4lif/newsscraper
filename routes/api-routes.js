@@ -3,9 +3,6 @@ var axios = require("axios");
 var cheerio = require("cheerio");
 
 function apiRoutes(app) {
-    app.get("/comment", function(req, res) {
-        db.Comment.find({}).then(function)
-    })
     app.get("/scrape", function (req, res) {
         db.Article.find({}).then(function (dbArticle) {
             var articlesArr = []
