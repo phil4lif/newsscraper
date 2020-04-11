@@ -3,6 +3,9 @@ var axios = require("axios");
 var cheerio = require("cheerio");
 
 function apiRoutes(app) {
+    app.get("/comment", function(req, res) {
+        db.Comment.find({}).then(function)
+    })
     app.get("/", function (req, res) {
         db.Article.find({}).then(function (dbArticle) {
             var articlesArr = []
@@ -11,12 +14,13 @@ function apiRoutes(app) {
                     title: dbArticle[i].title,
                     link: dbArticle[i].link,
                     id: dbArticle[i]._id,
-                    imagesource: dbArticle[i].imagesource
+                    imagesource: dbArticle[i].imagesource,
                 })
             }
             var hbsObject = {
                 articles: articlesArr
             };
+            console.log(hbsObject)
             res.render("index", hbsObject)
         }
         )
@@ -67,7 +71,7 @@ function apiRoutes(app) {
 
     app.get("/articles/:id", function (req, res) {
         db.Article.findOne({ _id: req.params.id })
-            .populate("Comment")
+            .populate("comment")
             .then(function (dbArticle) {
                 res.json(dbArticle);
             })
