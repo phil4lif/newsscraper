@@ -6,6 +6,7 @@ function apiRoutes(app) {
     app.get("/", function (req, res) {
         res.render("index")
     })
+
     app.get("/home", function (req, res) {
         db.Article.find({}).then(function (dbArticle) {
             var articlesArr = []
@@ -22,8 +23,7 @@ function apiRoutes(app) {
             };
             console.log(hbsObject)
             res.render("index", hbsObject)
-        }
-        )
+        })
     });
 
     app.get("/scrape", function (req, res) {
