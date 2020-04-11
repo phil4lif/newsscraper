@@ -3,7 +3,10 @@ var axios = require("axios");
 var cheerio = require("cheerio");
 
 function apiRoutes(app) {
-    app.get("/scrape", function (req, res) {
+    app.get("/", function (req, res) {
+        res.render("index")
+    })
+    app.get("/home", function (req, res) {
         db.Article.find({}).then(function (dbArticle) {
             var articlesArr = []
             for (var i = 0; i < 10; i++) {
@@ -21,9 +24,9 @@ function apiRoutes(app) {
             res.render("index", hbsObject)
         }
         )
-});
+    });
 
-    app.get("/", function (req, res) {
+    app.get("/scrape", function (req, res) {
         axios.get("https://www.npr.org/sections/news/")
             .then(function (response) {
                 // console.log(response.data)
@@ -43,7 +46,7 @@ function apiRoutes(app) {
 
                     db.Article.create(result)
                         .then(function (dbArticle) {
-                            // console.log(dbArticle);
+                            console.log(dbArticle);
                         })
                         .catch(function (err) {
                             // console.log(err);
@@ -88,6 +91,5 @@ function apiRoutes(app) {
                 res.json(err);
             })
     });
-
 }
 module.exports = apiRoutes

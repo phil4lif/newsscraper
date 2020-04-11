@@ -28,7 +28,7 @@ body {
     background-color: rgba(103, 222, 11, 0.4)
     }
 
-#scrape {
+#scrape, #home {
     background-color: rgba(103, 222, 11, 0.5);
     border: solid 1px black;
 }
