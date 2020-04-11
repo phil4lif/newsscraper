@@ -5,7 +5,7 @@ var cheerio = require("cheerio");
 function apiRoutes(app) {
     app.get("/", function (req, res) {
         res.render("index")
-    })
+    });
 
     app.get("/home", function (req, res) {
         db.Article.find({}).then(function (dbArticle) {

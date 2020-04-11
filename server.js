@@ -5,7 +5,7 @@ var mongoose = require("mongoose");
 var PORT = 3000;
 
 var app = express();
-
+var apiRoutes = require("./routes/api-routes")
 app.use(logger("dev"));
 
 app.use(express.urlencoded({ extended: true}));
@@ -23,7 +23,7 @@ var MONGODB_URI = process.env.MONGODB_URI || "mongodb://localhost/newsscraper";
 mongoose.connect(MONGODB_URI, { useNewUrlParser: true });
 // mongoose.connect("mongodb://localhost/newsscraper", { useNewUrlParser: true });
 
-var apiRoutes = require("./routes/api-routes")
+
 apiRoutes(app)
 app.listen(PORT, function() {
     console.log("App running on port " + PORT);
