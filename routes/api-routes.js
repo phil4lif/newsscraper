@@ -10,7 +10,7 @@ function apiRoutes(app) {
     app.get("/home", function (req, res) {
         db.Article.find({}).then(function (dbArticle) {
             var articlesArr = []
-            for (var i = 0; i < 10; i++) {
+            for (var i = 0; i < dbArticle.length; i++) {
                 articlesArr.push({
                     title: dbArticle[i].title,
                     link: dbArticle[i].link,
