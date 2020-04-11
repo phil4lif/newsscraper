@@ -6,7 +6,7 @@ function apiRoutes(app) {
     app.get("/comment", function(req, res) {
         db.Comment.find({}).then(function)
     })
-    app.get("/", function (req, res) {
+    app.get("/scrape", function (req, res) {
         db.Article.find({}).then(function (dbArticle) {
             var articlesArr = []
             for (var i = 0; i < 10; i++) {
@@ -26,7 +26,7 @@ function apiRoutes(app) {
         )
 });
 
-    app.get("/scrape", function (req, res) {
+    app.get("/", function (req, res) {
         axios.get("https://www.npr.org/sections/news/")
             .then(function (response) {
                 // console.log(response.data)
